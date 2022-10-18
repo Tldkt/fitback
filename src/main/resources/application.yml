@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysql?serverTimezone=Asia/Seoul
+    username: song2
+    password: noonsong123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # DDL(create, alter, drop) 정의시 DB의 고유 기능을 사용할 수 있다.
+      properties:
+        hibernate:
+          format_sql: true # JPA의 구현체인 Hibernate가 동작하면서 발생한 SQL의 가독성을 높여준다.
+          show_sql: true
+      dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+logging:
+  level:
+    com.tutorial: debug
+    org.springframework: debug
+    org.springframework.web: debug
+
+
+jwt:
+  secret: fitback
