@@ -15,9 +15,10 @@ import teamProject.fitbackLogin.entity.Member;
 import teamProject.fitbackLogin.jwt.TokenProvider;
 import teamProject.fitbackLogin.repository.MemberRepository;
 
-@Service
+
 @Transactional
 @RequiredArgsConstructor
+@Service
 public class AuthService {
     private final AuthenticationManagerBuilder managerBuilder;
     private final MemberRepository memberRepository;

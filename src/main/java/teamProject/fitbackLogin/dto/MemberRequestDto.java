@@ -16,12 +16,15 @@ import teamProject.fitbackLogin.entity.Member;
 public class MemberRequestDto {
     private String email;
     private String password;
-    private String nickname;
+    private String username;
+    private String phone;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
+                .username(username)
+                .phone(phone)
                 .authority(Authority.ROLE_USER)
                 .build();
     }
