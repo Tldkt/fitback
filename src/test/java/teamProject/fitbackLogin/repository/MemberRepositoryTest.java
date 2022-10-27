@@ -21,21 +21,23 @@ class MemberRepositoryTest {
     @Autowired
     MemberRepository repository;
     private Optional<Member> findEmail;
+    public Optional<Member> member;
 
     @Test
     @Transactional
     @Rollback(false)
     public void testMember() {
-        Member member = new Member(
+        member = Optional.of(new Member(
                 null, "noonsong@gamil.com", "2020", "김송이", "010-0000-0000", ROLE_USER
-        );
+        ));
 
-        repository.save(member);
+        repository.save(member.get());
 
-        findEmail = repository.findByEmail(member.getEmail());
+        findEmail =repository.findByEmail(member.get().getEmail());
 
-        assertEquals(findEmail.get().getId(), member.getId());
-        assertEquals(findEmail.get().getAuthority(), member.getAuthority());
+
+        assertEquals(findEmail.get().getId(), member.get().getId());
+        assertEquals(findEmail.get().getAuthority(), member.get().getAuthority());
         assertEquals(findEmail, member);
     }
 }
