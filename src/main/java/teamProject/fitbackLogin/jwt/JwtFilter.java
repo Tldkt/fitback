@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     //필터링을 실행하는 메서드
-    //SecurityContext에서 허가된 uri이외의 모든 Request 요청은 전부 이 필터를 거치게 되며, 토큰 정보거나 없거나 유효치않으면 정상적으로 수행 X.
+    //SecurityContext에서 허가된 uri 이외의 모든 Request 요청은 전부 이 필터를 거치게 되며, 토큰 정보거나 없거나 유효치않으면 정상적으로 수행 X.
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = resolveToken(request);
