@@ -14,23 +14,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OauthService {
-    private final GoogleOauth googleOauth;
-    private final NaverOauth naverOauth;
+    //필드에서 @RequiredArgsConstructor를 통해 SocialOauth 타입의 객체들이 List 형태로 Injection 되도록 필드를 List 타입으로 수정
+    private final List<SocialOauth> socialOauthList;
     private final HttpServletResponse response;
 
     public void request(SocialLoginType socialLoginType) {
-        String redirectURL;
-        switch (socialLoginType) {
-            case GOOGLE: {
-                redirectURL = googleOauth.getOauthRedirectURL();
-            } break;
-            case NAVER: {
-                redirectURL = naverOauth.getOauthRedirectURL();
-            } break;
-            default: {
-                throw new IllegalArgumentException("알 수 없는 소셜 로그인 형식입니다.");
-            }
-        }
+        SocialOauth socialOauth = this.findSocialOauthByType(socialLoginType);
+        String redirectURL = socialOauth.getOauthRedirectURL();
         try {
             response.sendRedirect(redirectURL);
         } catch (IOException e) {
@@ -39,16 +29,16 @@ public class OauthService {
     }
 
     public String requestAccessToken(SocialLoginType socialLoginType, String code) {
-        switch (socialLoginType) {
-            case GOOGLE: {
-                return googleOauth.requestAccessToken(code);
-            }
-            case NAVER: {
-                return naverOauth.requestAccessToken(code);
-            }
-            default: {
-                throw new IllegalArgumentException("알 수 없는 소셜 로그인 형식입니다.");
-            }
-        }
+        SocialOauth socialOauth = this.findSocialOauthByType(socialLoginType);
+        return socialOauth.requestAccessToken(code);
+    }
+
+    //SocialLoginType에 맞는 SocialOauth 객체를 반환하는 findSocialOauthByType 메소드
+    //각 request, requestAccessToken 메소드에서 SocialLoginType에 맞는 SocialOauth 클래스를 findSocialOauthByType 함수를 통해 초기화
+    private SocialOauth findSocialOauthByType(SocialLoginType socialLoginType) {
+        return socialOauthList.stream()
+                .filter(x -> x.type() == socialLoginType)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("알 수 없는 SocialLoginType 입니다."));
     }
 }
