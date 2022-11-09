@@ -13,6 +13,20 @@ spring:
         format_sql: true # JPA의 구현체인 Hibernate가 동작하면서 발생한 SQL의 가독성을 높여준다.
         show_sql: true
 
+  security:
+    oauth2:
+      client:
+         registration:
+           google:
+             url: https://accounts.google.com/o/oauth2/v2/auth
+             client-id: 439336342405-um4lraa4ija50rvj6hne50b247c90r36.apps.googleusercontent.com
+             client-secret: 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
+             callback:
+               url: http://localhost:8080/auth/google/callback
+             response_type: code
+             scope:
+               - email
+               - profile
 
 logging:
   level:
@@ -20,5 +34,4 @@ logging:
 
 jwt:
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-
 
