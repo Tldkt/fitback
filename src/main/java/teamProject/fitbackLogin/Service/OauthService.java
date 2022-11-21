@@ -2,8 +2,6 @@ package teamProject.fitbackLogin.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import teamProject.fitbackLogin.Service.social.GoogleOauth;
-import teamProject.fitbackLogin.Service.social.NaverOauth;
 import teamProject.fitbackLogin.Service.social.SocialOauth;
 import teamProject.fitbackLogin.helper.constants.SocialLoginType;
 

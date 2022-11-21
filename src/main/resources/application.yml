@@ -19,18 +19,18 @@ spring:
          registration:
            google:
              url: https://accounts.google.com/o/oauth2/v2/auth
-             client-id: 439336342405-um4lraa4ija50rvj6hne50b247c90r36.apps.googleusercontent.com
-             client-secret: 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
+             client-id: 439336342405-nre340oeebn9anekepg90l8e0h393b0a.apps.googleusercontent.com
+             client-secret: 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
              callback:
                url: http://localhost:8080/auth/google/callback
-             response_type: code
-             scope:
-               - email
-               - profile
+             token:
+               url: https://oauth2.googleapis.com/token
 
 logging:
   level:
     com.tutorial: debug
+    org.apache.http: debug
+    httpclient.wire: debug
 
 jwt:
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
