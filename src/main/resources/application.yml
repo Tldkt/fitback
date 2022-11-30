@@ -18,17 +18,17 @@ spring:
       client:
         registration:
           google:
-            client-id: 439336342405-nre340oeebn9anekepg90l8e0h393b0a.apps.googleusercontent.com
-            client-secret: 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http://localhost:8080/auth/naver
+            client-id: 439336342405-kjsaaodjc5coet1chmjg3fmq948vg7mi.apps.googleusercontent.com
+            client-secret: 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
             redirect-uri: http://localhost:8080/auth/google/callback
-            authorization-grant-type: authorization_code
+            authorization-grant-type: code
 
           naver:
             client-id: oeiI6UyzGUxfwwnLq7_l
-            client-secret: 5TbvXBxXhu
+            client-secret: GZpMu07z7f
             #yaml 에서는 / (슬러시)를 그대로 쓰면 파싱 에러가 난다. 따옴표나 작은 따옴표로 감싸주어야함
             redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
-                # = http://localhost:8080/login/oauth2/code/naver
+            # = http://localhost:8080/login/oauth2/code/naver
             scope: name,email,mobile
             client-name: Naver
             authorization-grant-type: authorization_code
@@ -36,7 +36,7 @@ spring:
 
         provider:
           google:
-            authorization-uri: http://localhost:8080/auth/google
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
             token-uri: https://oauth2.googleapis.com/token
 
           naver:
