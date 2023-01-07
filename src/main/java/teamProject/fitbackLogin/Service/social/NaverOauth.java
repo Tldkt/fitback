@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,14 +33,18 @@ public class NaverOauth implements SocialOauth{
     private String NAVER_SNS_TOKEN_BASE_URL;
     @Value("${spring.security.oauth2.client.registration.naver.scope}")
     private String NAVER_SNS_SCOPE;
+    private final static String SESSION_STATE = "oauth_state";
 
     @Override
     public String getOauthRedirectURL() {
 
+
         Map<String, Object> params = new HashMap<>();
-        params.put("scope", NAVER_SNS_SCOPE);
+        params.put("response_type", "code");
         params.put("client_id", NAVER_SNS_CLIENT_ID);
+        params.put("state", "oauth_state");
         params.put("redirect_uri", NAVER_SNS_CALLBACK_URL);
+
 
         String parameterString = params.entrySet().stream()
                 .map(x -> x.getKey() + "=" + x.getValue())
@@ -50,7 +55,6 @@ public class NaverOauth implements SocialOauth{
 
     @Override
     public String requestAccessToken(String code) {
-
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
@@ -61,11 +65,11 @@ public class NaverOauth implements SocialOauth{
         });
 
         Map<String, Object> params = new HashMap<>();
-        params.put("code", code);
+        params.put("grant_type", "authorization_code");
         params.put("client_id", NAVER_SNS_CLIENT_ID);
         params.put("client_secret", NAVER_SNS_CLIENT_SECRET);
-        params.put("redirect_uri", NAVER_SNS_CALLBACK_URL);
-        params.put("grant_type", "authorization_code");
+        params.put("code", code);
+        params.put("state", "oauth_state");
 
 
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(NAVER_SNS_TOKEN_BASE_URL, params, String.class);
