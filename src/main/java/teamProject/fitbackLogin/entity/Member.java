@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Builder
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

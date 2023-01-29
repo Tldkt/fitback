@@ -1,4 +1,4 @@
-package teamProject.fitbackLogin.Service.social;
+package teamProject.fitbackLogin.auth_service.social;
 
 import teamProject.fitbackLogin.helper.constants.SocialLoginType;
 

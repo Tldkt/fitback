@@ -1,8 +1,8 @@
-package teamProject.fitbackLogin.Service;
+package teamProject.fitbackLogin.auth_service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import teamProject.fitbackLogin.Service.social.SocialOauth;
+import teamProject.fitbackLogin.auth_service.social.SocialOauth;
 import teamProject.fitbackLogin.helper.constants.SocialLoginType;
 
 import javax.servlet.http.HttpServletResponse;

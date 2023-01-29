@@ -1,10 +1,9 @@
-package teamProject.fitbackLogin.controller;
+package teamProject.fitbackLogin.auth_controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
-import teamProject.fitbackLogin.Service.OauthService;
+import teamProject.fitbackLogin.auth_service.OauthService;
 import teamProject.fitbackLogin.helper.constants.SocialLoginType;
 
 @Slf4j

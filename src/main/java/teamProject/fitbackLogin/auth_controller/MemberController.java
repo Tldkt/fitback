@@ -1,9 +1,9 @@
-package teamProject.fitbackLogin.controller;
+package teamProject.fitbackLogin.auth_controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamProject.fitbackLogin.Service.MemberService;
+import teamProject.fitbackLogin.auth_service.MemberService;
 import teamProject.fitbackLogin.dto.ChangePasswordRequestDto;
 import teamProject.fitbackLogin.dto.MemberResponseDto;
 
